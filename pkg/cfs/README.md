@@ -13,6 +13,9 @@ RUNTIME_CONFIG="storage.k8s.io/v1alpha1=true"
 
 Mountprogpation requries support for privileged containers. So, make sure privileged containers are enabled in the cluster.
 
+### images: cfscsi:v1 -- deploy/Dockerfile
+```docker build -t cfscsi:v1 deploy/.
+
 ### Deploy
 
 ```kubectl -f deploy/kubernetes create```
