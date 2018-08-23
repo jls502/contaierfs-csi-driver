@@ -20,9 +20,9 @@ Mountprogpation requries support for privileged containers. So, make sure privil
 ### Pre Volume: Example Nginx application
 Please update the cfs VolMgrServer & volume uuid information in nginx.yaml file.
 
-```kubectl create -f examples/kubernetes/nginx-pre.yaml```
+```kubectl create -f deploy/examples/nginx-pre.yaml```
 
 ### Dynamic volume: Example Nginx application
-```kubectl create -f examples/kubernetes/cfs-pvc.yaml```
-```kubectl create -f examples/kubernetes/cfs-pv.yaml```
-```kubectl create -f examples/kubernetes/nginx-dynamic.yaml```
+```kubectl create -f deploy/examples/cfs-pvc.yaml```
+```kubectl create -f deploy/examples/cfs-pv.yaml```
+```kubectl create -f deploy/examples/nginx-dynamic.yaml```

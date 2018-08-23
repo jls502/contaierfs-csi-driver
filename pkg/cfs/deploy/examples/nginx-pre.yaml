@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-cfsplugin
+  labels:
+    name: data-cfsplugin
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 112Gi
+  csi:
+    driver: csi-cfsplugin
+    volumeHandle: data-id
+    volumeAttributes: 
+      cfsvolmgr1: 11.3.103.3
+      cfsvolmgr2: 11.3.104.3
+      cfsvolmgr3: 11.3.105.3
+      cfsvol: 9d61f26e408735d98067915818f2b477 
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-cfsplugin
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 112Gi
+  selector:
+    matchExpressions:
+    - key: name
+      operator: In
+      values: ["data-cfsplugin"]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx 
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: "IfNotPresent"
+    name: nginx
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    volumeMounts:
+      - mountPath: /var/www
+        name: data-cfsplugin 
+  volumes:
+  - name: data-cfsplugin
+    persistentVolumeClaim:
+      claimName: data-cfsplugin 

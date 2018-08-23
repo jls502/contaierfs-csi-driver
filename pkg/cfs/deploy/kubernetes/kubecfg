@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Config
+preferences: {}
+clusters:
+- cluster:
+    insecure-skip-tls-verify: true
+    server: http://172.22.148.63:8080
